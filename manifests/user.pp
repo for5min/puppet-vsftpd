@@ -1,9 +1,9 @@
 #Class vsftpd::user
 #
 define vsftpd::user (
-  $user, 
-  $path, 
-  $dir = $vsftpd::params::user_config_dir
+  $user,
+  $path,
+  $dir = $vsftpd::params::user_config_dir,
 ) {
 
   user { $user :
