@@ -5,7 +5,7 @@ class vsftpd::params {
   # vsftpd.conf options
   $anonymous_enable        = 'NO'
   $local_enable            = 'YES'
-  $local_root              = undef 
+  $local_root              = undef
   $write_enable            = 'NO'
   $local_umask             = '022'
   $anon_upload_enable      = 'NO'
