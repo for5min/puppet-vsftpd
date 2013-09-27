@@ -9,6 +9,10 @@ class vsftpd::user inherits vsftpd::params {
       home   => $path,
     } ->
 
+    file { $path :
+      ensure => present,
+    } ->
+
     file{ "${dir}/${user}" :
       ensure  => present,
       owner   => 'root',
