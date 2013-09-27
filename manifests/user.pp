@@ -1,26 +1,26 @@
 #Class vsftpd::user
 #
-class vsftpd::user inherits vsftpd::params {
+define vsftpd::user (
+  $user, 
+  $path, 
+  $dir = $vsftpd::params::user_config_dir
+) {
 
+  user { $user :
+    ensure => present,
+    home   => $path,
+  } ->
 
-  define add ($user, $path, $dir=$vsftpd::params::user_config_dir) {
-    user { $user :
-      ensure => present,
-      home   => $path,
-    } ->
+  file { $path :
+    ensure => directory,
+  } ->
 
-    file { $path :
-      ensure => present,
-    } ->
+  file{ "${dir}/${user}" :
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template("vsftpd/user_conf.erb")
+  }
 
-    file{ "${dir}/${user}" :
-      ensure  => present,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template("vsftpd/user_conf.erb")
-    }
-
-    }
-  create_resources('vsftpd::user::add', hiera_hash(vsftpd::user_path))
 }

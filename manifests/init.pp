@@ -49,7 +49,7 @@ class vsftpd (
 ) inherits vsftpd::params {
 
   include vsftpd::install
-  include vsftpd::user
+  create_resources('vsftpd::user', hiera_hash(vsftpd::user_path))
 
 }
 
