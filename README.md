@@ -19,7 +19,7 @@ custom settings :
       ftpd_banner       => 'Welcome FTP Server',
     }
 
-## it include ymal to create user name and path
+## it includes ymal to create user name and path
 
 common.yaml
 
