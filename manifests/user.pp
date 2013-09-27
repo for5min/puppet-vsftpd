@@ -13,12 +13,8 @@ class vsftpd::user inherits vsftpd::params {
       mode    => 0644,
       ensure  => present,
       content => template("vsftpd/user_conf.erb")
-    } ->
-
-    file { "${path}" :
-     ensure => directory,
-     owner  => $user,
     }
+
     }
   create_resources('vsftpd::user::add', hiera_hash(vsftpd::user_path))
 }
