@@ -3,11 +3,13 @@
 define vsftpd::user (
   $user,
   $path,
+  $gid,
   $dir = $vsftpd::params::user_config_dir,
 ) {
 
   user { $user :
     ensure => present,
+    gid    => $gid,
     home   => $path,
   } ->
 
